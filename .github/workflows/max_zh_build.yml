@@ -1,0 +1,43 @@
+name: MAX zh-CN Localization Build
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  localization-build:
+    name: Build Chinese Localization
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Check Android project
+        run: |
+          python3 tools/max_adapter/project_scanner.py
+
+      - name: Apply zh-CN translation mapping
+        run: |
+          python3 tools/i18n/auto_translate.py
+
+      - name: Build APK
+        if: hashFiles('gradlew') != ''
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+      - name: Upload APK artifact
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: max-zh-cn-debug-apk
+          path: app/build/outputs/apk/**/*.apk
