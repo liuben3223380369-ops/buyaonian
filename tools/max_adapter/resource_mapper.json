@@ -1,0 +1,12 @@
+{
+  "android": {
+    "source": "app/src/main/res/values",
+    "target": "app/src/main/res/values-zh-rCN"
+  },
+  "mapping": {
+    "strings.xml": true,
+    "layouts": true,
+    "compose_strings": true
+  },
+  "encoding": "UTF-8"
+}
