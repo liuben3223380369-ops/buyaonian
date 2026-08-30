@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- MAX 简体中文汉化资源模板 -->
+    <string name="app_name">MAX</string>
+    <string name="chat">聊天</string>
+    <string name="settings">设置</string>
+    <string name="send">发送</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确认</string>
+</resources>
